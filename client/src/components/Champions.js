@@ -14,8 +14,8 @@ const Champions = () => {
   }
 
   if (loggedIn) {
-    const championsList = champions.map(c => <li>{c.name}<button onClick={deleteChampion}>Delete</button></li>)
-    
+    const championsList = champions.map(c => <ul>Name: {c.name} <br />Origin: {c.origin} <br /> Category: {c.category} <button onClick={deleteChampion}>delete</button> </ul>)
+    // const deleteOneChampion = champions.filter(d => d.id !== id)
     return (
       <div>
         <h3>Champions</h3>
@@ -24,6 +24,7 @@ const Champions = () => {
         <br />
         {formFlag ? <ChampionForm addChampionFlag={addChampionFlag}/> :
          <button onClick={() => setFormFlag(true)}>Add Champion</button> }
+        
       </div>
     )
   }

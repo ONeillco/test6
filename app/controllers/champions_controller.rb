@@ -26,7 +26,7 @@ class ChampionsController < ApplicationController
 
   def destroy
     # binding.pry
-     champion = Champion.find_by(id: params[:id])
+     current_user.champions.find_by(id: params[:id])
     if  champion
       champion.destroy
       head :no_content
@@ -36,7 +36,7 @@ class ChampionsController < ApplicationController
   end
 
   def update
-    champion = Champion.find_by(id: params[:id])
+    current_user.champions.find_by(id: params[:id])
     if  champion
       champion.update(champion_params)
     else

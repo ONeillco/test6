@@ -49,10 +49,12 @@ const deleteChampion = (id) => {
   })
   .then(res => res.json())
   .then(data => {
-    // setChampions([...champions, data] )
     console.log(data)
   })
 }
+
+
+
 
 
 const login = () => {

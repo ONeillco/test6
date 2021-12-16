@@ -3,4 +3,5 @@ class User < ApplicationRecord
   validates :username, :password, :password_confirmation, presence: true
 
   has_many :champions
+  has_many :reviews
 end
