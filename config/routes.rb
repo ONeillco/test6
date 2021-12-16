@@ -6,6 +6,8 @@ Rails.application.routes.draw do
  
   
   resources :champions
+  resources :reviews, only: [:create, :index]
+  
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
