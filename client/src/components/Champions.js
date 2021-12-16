@@ -13,9 +13,16 @@ const Champions = () => {
     setFormFlag(false)
   }
 
+  const handleDelete = (id) => {
+    const champ = champions.find( d => d.id !== id)
+    deleteChampion(champ)
+  }
+
+
   if (loggedIn) {
-    const championsList = champions.map(c => <ul>Name: {c.name} <br />Origin: {c.origin} <br /> Category: {c.category} <button onClick={deleteChampion}>delete</button> </ul>)
+    const championsList = champions.map(c => <ul>Name: {c.name} <br />Origin: {c.origin} <br /> Category: {c.category} <button onClick={ () => handleDelete( c.id )}>delete</button> </ul>)
     // const deleteOneChampion = champions.filter(d => d.id !== id)
+    
     return (
       <div>
         <h3>Champions</h3>

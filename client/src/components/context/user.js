@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
 
 const UserContext = React.createContext()
 
@@ -6,6 +7,7 @@ function UseProvider({ children }) {
 const [user, setUser] = useState({})
 const [loggedIn, setLoggedIn] = useState(false)
 const [champions, setChampions] = useState([])
+const navigate = useNavigate()
 
 
 useEffect(() => {
@@ -26,7 +28,7 @@ const fetchchampions = () => {
   fetch('/champions')
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+    // console.log(data)
     setChampions(data)
   })
 }
@@ -43,17 +45,31 @@ const addChampion = (champion) => {
   })
 }
 
-const deleteChampion = (id) => {
-  fetch(`/champions/${id}`, {
-    method: 'DELETE'
+const editChampion = (champion) => {
+  fetch('/champions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(champion)
   })
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+    setChampions([...champions, data])
   })
 }
 
 
+const deleteChampion = (champion) => {
+  fetch(`/champions/${champion.id}`, {
+    method: 'DELETE'
+  })
+  .then(res => {
+    // navigate('/champions')
+    if(res.ok){
+    } else {
+      res.json().then(console.log)
+    }
+  })
+}
 
 
 
@@ -77,7 +93,7 @@ const signup = () => {
 
 
   return (
-    <UserContext.Provider value={{user, login, logout, signup, loggedIn, champions, addChampion, deleteChampion}}>
+    <UserContext.Provider value={{user, login, logout, signup, loggedIn, champions, addChampion, deleteChampion, editChampion}}>
     { children }
   </UserContext.Provider>
   )

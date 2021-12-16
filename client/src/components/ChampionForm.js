@@ -5,7 +5,7 @@ const ChampionForm = ({addChampionFlag}) => {
   const [name, setName] = useState("")
   const [origin, setOrigin] = useState("")
   const [category, setCategory] = useState("")
-  const { addChampion } = useContext(UserContext)
+  const { addChampion, editChampion } = useContext(UserContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -14,8 +14,24 @@ const ChampionForm = ({addChampionFlag}) => {
       origin: origin,
       category: category
     })
+    
+    editChampion({
+      name: name,
+      origin: origin,
+      category: category
+    })
     addChampionFlag()
   }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   addChampion({
+  //     name: name,
+  //     origin: origin,
+  //     category: category
+  //   })
+  //   addChampionFlag()
+  // }
 
   return (
        <div>

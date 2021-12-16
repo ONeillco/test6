@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import { Route, useParams } from "react-router-dom"
+import { UserContext } from './context/user'
 
 const EditChampion = () => {
+  const { loggedIn } = useContext(UserContext)
   const [ name, setName ] = useState("");
   const [ champions, setChampions ] = useState(null);
   const { id } = useParams();
