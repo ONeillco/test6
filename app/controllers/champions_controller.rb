@@ -38,7 +38,8 @@ class ChampionsController < ApplicationController
   def update
     champion = current_user.champions.find_by(id: params[:id])
     if  champion
-      champion.update(champion_params)
+      champion.update(champion_params) 
+      # status: :accepted
     else
       render json: {error: "Hero Not Found"}, status: :not_found
     end

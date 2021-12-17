@@ -15,11 +15,11 @@ const ChampionForm = ({addChampionFlag}) => {
       category: category
     })
     
-    editChampion({
-      name: name,
-      origin: origin,
-      category: category
-    })
+    // editChampion({
+    //   name: name,
+    //   origin: origin,
+    //   category: category
+    // })
     addChampionFlag()
   }
 

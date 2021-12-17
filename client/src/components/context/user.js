@@ -19,12 +19,12 @@ useEffect(() => {
       setLoggedIn(false)
     } else {
       setLoggedIn(true)
-      fetchchampions()
+      fetchChampions()
     }
   })
 }, [])
 
-const fetchchampions = () => {
+const fetchChampions = () => {
   fetch('/champions')
   .then(res => res.json())
   .then(data => {
@@ -46,14 +46,14 @@ const addChampion = (champion) => {
 }
 
 const editChampion = (champion) => {
-  fetch('/champions', {
-    method: 'POST',
+  fetch(`/champions/${champion.id}`, {
+    method: 'PATCH',
     headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify(champion)
   })
   .then(res => res.json())
   .then(data => {
-    setChampions([...champions, data])
+    setChampions([...champions, data] )
   })
 }
 
@@ -75,7 +75,7 @@ const deleteChampion = (champion) => {
 
 const login = () => {
   setUser(user)
-  fetchchampions()
+  fetchChampions()
   setLoggedIn(true)
 }
 
@@ -87,13 +87,13 @@ const logout = () => {
 
 const signup = () => {
   setUser(user)
-  fetchchampions()
+  fetchChampions()
   setLoggedIn(true)
 }
 
 
   return (
-    <UserContext.Provider value={{user, login, logout, signup, loggedIn, champions, addChampion, deleteChampion, editChampion}}>
+    <UserContext.Provider value={{user, login, logout, signup, loggedIn, champions, setChampions, addChampion, deleteChampion, editChampion, fetchChampions}}>
     { children }
   </UserContext.Provider>
   )

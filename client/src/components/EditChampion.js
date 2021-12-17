@@ -1,23 +1,75 @@
-import React, { useState, useContext } from 'react'
-import { Route, useParams } from "react-router-dom"
+// import React, { useState, useContext } from 'react'
+// import { UserContext } from './context/user'
+// import { useParams } from 'react-router-dom'
+
+// const EditChampion = () => {
+//   const [name, setName] = useState("")
+//   const [origin, setOrigin] = useState("")
+//   const [category, setCategory] = useState("")
+//   const { id } = useParams();
+//   const { editChampion } = useContext(UserContext)
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault()
+//     editChampion({
+//       name: name,
+//       origin: origin,
+//       category: category,
+//       id: id
+//     })
+//   }
+
+//   return (
+//        <div>
+//          {/* {championsList}  */}
+//       <form onSubmit={handleSubmit}>
+//         <label>Name</label>
+//         <input
+//         type="text"
+//         id="name"
+//         value={name}
+//         onChange={(e) => setName(e.target.value)}
+//         /> <br/>
+//         <label>Origin</label>
+//         <input
+//         type="text"
+//         id="origin"
+//         value={origin}
+//         onChange={(e) => setOrigin(e.target.value)}
+//         /> <br/>
+//         <label>Category </label>
+//         <input
+//         type="text"
+//         id="category"
+//         value={category}
+//         onChange={(e) => setCategory(e.target.value)}
+//         /> <br/>
+//         <input type="submit"/>
+//      </form>
+//     </div>
+//   )
+// }
+
+// export default EditChampion
+
+
+import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate, useParams } from "react-router-dom"
 import { UserContext } from './context/user'
 
+
 const EditChampion = () => {
-  const { loggedIn } = useContext(UserContext)
+  const { loggedIn, champions, setChampions } = useContext(UserContext)
   const [ name, setName ] = useState("");
-  const [ champions, setChampions ] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const loadChampion = async () => {
-      const resp = await fetch(`/champions/${id}`)
-      const data = await resp.json();
-      setChampions(data);
-      setName(data.name);
-    }
-    loadChampion();
-  }, [id])
+  useEffect(async () => {
+    const resp = await fetch(`/champions`)
+    const data = await resp.json();
+    setChampions(data);
+    setName(data.name);
+  }, [])
 
   const handleChange = e => {
     setName(e.target.value)
@@ -35,14 +87,14 @@ const EditChampion = () => {
       headers,
       body: JSON.stringify(body)
     }
-    await fetch(`/champions/${ id }`, options)
+    await fetch(`/champions`, options)
     
-    navigate(`/champions/${ id }`);
+    navigate(`/champions`);
     
     // redirect
   }
 
-  if(loading){ return <h1>Loading...</h1>};
+  // if(loading){ return <h1>Loading...</h1>};
 
   return (
     <div>

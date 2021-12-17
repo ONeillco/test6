@@ -3,7 +3,7 @@ import { NavLink, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/user'
 
 const Nav = () => {
-  const {user, logout, loggedIn} = useContext(UserContext)
+  const {user, logout, loggedIn, champions} = useContext(UserContext)
   const navigate = useNavigate()
 
   const logoutUser = () => {

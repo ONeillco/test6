@@ -7,6 +7,7 @@ import Signup from './components/sessions/Signup';
 import Login from './components/sessions/Login';
 import Champions from './components/Champions';
 import { UseProvider } from './components/context/user'
+import EditChampion from './components/EditChampion';
 
 
 
@@ -22,6 +23,8 @@ function App() {
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/champions" element={<Champions />} />
+      <Route exact path="/champions/edit" element={<EditChampion />} />
+      {/* <Route exact path="/champions/:id" element={<Champions />} /> */}
 
       </Routes>
    
