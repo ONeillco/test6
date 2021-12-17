@@ -10,7 +10,7 @@ const Home = () => {
         } else {
          return (
        <div>
-         <h3>{user.username} Home</h3>
+         <h3>{user.username} Welcome Home</h3>
        </div>
 
       )

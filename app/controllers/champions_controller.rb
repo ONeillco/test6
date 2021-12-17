@@ -51,12 +51,8 @@ class ChampionsController < ApplicationController
     User.find_by(id: session[:user_id])
   end
 
-  def current_Champion
-    Champion.find_by(id: session[:user_id])
-  end
-
   def champion_params
-    params.permit(:name, :origin, :category)
+    params.permit(:id, :name, :origin, :category, :user_id)
   end
 
   def authorize

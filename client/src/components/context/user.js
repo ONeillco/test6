@@ -45,15 +45,18 @@ const addChampion = (champion) => {
   })
 }
 
-const editChampion = (champion) => {
-  fetch(`/champions/${champion.id}`, {
+
+const editChampion = (id) => {
+  fetch(`/champions/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify(champion)
+    body: JSON.stringify()
   })
   .then(res => res.json())
   .then(data => {
-    setChampions([...champions, data] )
+    console.log(data)
+    // setChampions([...champions, data] )
+    debugger
   })
 }
 
