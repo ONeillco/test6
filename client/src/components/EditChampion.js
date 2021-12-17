@@ -14,10 +14,10 @@ const EditChampion = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     editChampion({
-      champion: champion
-      // name: name,
-      // origin: origin,
-      // category: category,
+      // champion: champion,
+      name: name,
+      origin: origin,
+      category: category,
     })
   }
 
@@ -46,13 +46,16 @@ const EditChampion = () => {
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         /> <br/>
-        <input type="submit"/>
+        <input type="submit" value="Update Author"/>
      </form>
     </div>
   )
 }
 
 export default EditChampion
+
+
+
 
 
 // import React, { useState, useContext, useEffect } from 'react'
@@ -67,17 +70,18 @@ export default EditChampion
 //   const navigate = useNavigate();
 
 //   useEffect(async () => {
-//     const resp = await fetch(`/champions/edit`)
+//     debugger
+//     const resp = await fetch(`/champions/${champion.id}`)
 //     const data = await resp.json();
-//     setChampions(data);
-//     setName(data.name);
+//     console.log(data)
+//         setChampions( data )
+//         setName( data.name )
+//         setOrigin( data.origin )
+//         setCategory( data.category )
 //   }, [])
-
-//   const handleChange = e => {
-//     setName(e.target.value)
-//   }
-
-//   const handleSubmit = async e => {
+  
+  
+//   const editChampion = async e => {
 //     e.preventDefault();
 //     const headers = {
 //       'Accept': 'application/json',
@@ -89,11 +93,8 @@ export default EditChampion
 //       headers,
 //       body: JSON.stringify(body)
 //     }
-//     await fetch(`/champions/edit`, options)
-    
-//     navigate(`/championsedit`);
-    
-    
+//     await fetch(`/champions`, options)
+
 //   }
 
   
@@ -115,3 +116,56 @@ export default EditChampion
 
 
 // export default EditChampion
+
+
+// useEffect(async () => {
+//   debugger
+//   const resp = await fetch(`/champions/${champion.id}`)
+//   const data = await resp.json();
+//   console.log(data)
+//       setChampions( data )
+//       setName( data.name )
+//       setOrigin( data.origin )
+//       setCategory( data.category )
+// }, [])
+
+
+// const editChampion = async e => {
+//   e.preventDefault();
+//   const headers = {
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+//   }
+//   const body = { name: name }
+//   const options = {
+//     method: "PATCH",
+//     headers,
+//     body: JSON.stringify(body)
+//   }
+//   await fetch(`/champions`, options)
+  
+  // history.push(`/authors/${ id }`);
+  
+  
+// }
+
+
+ // const editChampion = (champion) => {
+  //   debugger
+  //   fetch(`/champions/${champion.id}`, {
+  //     method: 'PATCH',
+  //     headers: { 'Content-Type': 'application/json'},
+  //     body: JSON.stringify(),
+  //     name :name,
+  //     origin :origin,
+  //     category :category,
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     // setChampions( data )
+  //     setName( data.name )
+  //     setOrigin( data.origin )
+  //     setCategory( data.category )
+  //   })
+  // }

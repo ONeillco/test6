@@ -8,6 +8,9 @@ const [user, setUser] = useState({})
 const [loggedIn, setLoggedIn] = useState(false)
 const [champions, setChampions] = useState([])
 const navigate = useNavigate()
+const [name, setName] = useState("")
+  const [origin, setOrigin] = useState("")
+  const [category, setCategory] = useState("")
 
 
 useEffect(() => {
@@ -46,17 +49,20 @@ const addChampion = (champion) => {
 }
 
 
-const editChampion = (id) => {
-  fetch(`/champions/${id}`, {
+const editChampion = (champion) => {
+  debugger
+  fetch(`/champions/${champion.id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify()
+    body: JSON.stringify(),
+    name: name,
+      origin: origin,
+      category: category,
   })
   .then(res => res.json())
   .then(data => {
     console.log(data)
     // setChampions([...champions, data] )
-    debugger
   })
 }
 
@@ -103,3 +109,5 @@ const signup = () => {
 }
 
 export { UserContext, UseProvider }
+
+
